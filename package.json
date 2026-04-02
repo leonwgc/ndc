@@ -1,0 +1,25 @@
+{
+  "name": "ndc",
+  "version": "1.0.0",
+  "description": "CLI tool to initialize ant-admin project from template",
+  "main": "dist/index.js",
+  "bin": {
+    "ndc": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["cli", "ant-admin", "template"],
+  "author": "leonwgc",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}
