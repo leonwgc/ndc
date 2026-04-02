@@ -100,7 +100,7 @@ const program = new Command();
 
 program
   .name('ndc')
-  .description('Scaffold an ant-admin project from template')
+  .description('Scaffold a neat design admin project from template')
   .version('1.0.0');
 
 program

@@ -121,7 +121,7 @@ async function init(dir) {
 const program = new commander_1.Command();
 program
     .name('ndc')
-    .description('Scaffold an ant-admin project from template')
+    .description('Scaffold a neat design admin project from template')
     .version('1.0.0');
 program
     .command('init')
