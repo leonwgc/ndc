@@ -6,7 +6,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import chalk from 'chalk';
 
-const TEMPLATE_URL = 'https://github.com/leonwgc/ant-admin-template.git';
+const TEMPLATE_URL = 'https://github.com/leonwgc/neat-admin-template.git';
 
 function run(command: string, cwd: string): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -65,7 +65,7 @@ async function init(dir: string): Promise<void> {
   await run('git init', targetDir);
 
   const pm = 'npm';
-  console.log(chalk.cyan(`\nInstalling dependencies with ${chalk.bold(pm)} ...\n`));
+  console.log(chalk.cyan(`\nInstalling dependencies...\n`));
   try {
     await run(`${pm} install`, targetDir);
   } catch (err) {

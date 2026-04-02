@@ -42,7 +42,7 @@ const child_process_1 = require("child_process");
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
 const chalk_1 = __importDefault(require("chalk"));
-const TEMPLATE_URL = 'https://github.com/leonwgc/ant-admin-template.git';
+const TEMPLATE_URL = 'https://github.com/leonwgc/neat-admin-template.git';
 function run(command, cwd) {
     return new Promise((resolve, reject) => {
         const [cmd, ...args] = command.split(' ');
