@@ -93,7 +93,7 @@ async function init(dir: string): Promise<void> {
   console.log(chalk.green(`\n✅ Project initialized successfully!\n`));
   console.log(chalk.bold('  Get started:'));
   console.log(chalk.yellow(`    cd ${dir}`));
-  console.log(chalk.yellow(`    ${pm} run dev`) + '\n');
+  console.log(chalk.yellow(`    ${pm} start`) + '\n');
 }
 
 const program = new Command();

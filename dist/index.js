@@ -75,7 +75,7 @@ async function init(dir) {
     if (!fs.existsSync(parentDir)) {
         fs.mkdirSync(parentDir, { recursive: true });
     }
-    console.log(chalk_1.default.cyan(`\nCloning template into ${chalk_1.default.bold(targetDir)} ...\n`));
+    console.log(chalk_1.default.cyan(`\nCloning codes into ${chalk_1.default.bold(targetDir)} ...\n`));
     try {
         await run(`git clone --depth 1 ${TEMPLATE_URL} ${projectName}`, parentDir);
     }
@@ -116,7 +116,7 @@ async function init(dir) {
     console.log(chalk_1.default.green(`\n✅ Project initialized successfully!\n`));
     console.log(chalk_1.default.bold('  Get started:'));
     console.log(chalk_1.default.yellow(`    cd ${dir}`));
-    console.log(chalk_1.default.yellow(`    ${pm} run dev`) + '\n');
+    console.log(chalk_1.default.yellow(`    ${pm} start`) + '\n');
 }
 const program = new commander_1.Command();
 program
