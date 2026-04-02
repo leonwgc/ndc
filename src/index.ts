@@ -46,7 +46,7 @@ async function init(dir: string): Promise<void> {
     fs.mkdirSync(parentDir, { recursive: true });
   }
 
-  console.log(chalk.cyan(`\nCloning template into ${chalk.bold(targetDir)} ...\n`));
+  console.log(chalk.cyan(`\nCloning codes into ${chalk.bold(targetDir)} ...\n`));
   try {
     await run(
       `git clone --depth 1 ${TEMPLATE_URL} ${projectName}`,
@@ -63,6 +63,23 @@ async function init(dir: string): Promise<void> {
     fs.rmSync(gitDir, { recursive: true, force: true });
   }
   await run('git init', targetDir);
+
+  // Remove docs directory if present
+  const docsDir = path.join(targetDir, 'docs');
+  if (fs.existsSync(docsDir)) {
+    fs.rmSync(docsDir, { recursive: true, force: true });
+    console.log(chalk.gray('Removed docs directory.'));
+  }
+
+  // Update package.json name and description
+  const pkgPath = path.join(targetDir, 'package.json');
+  if (fs.existsSync(pkgPath)) {
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+    pkg.name = projectName;
+    pkg.description = projectName;
+    fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
+    console.log(chalk.gray(`Updated package.json: name="${projectName}", description="${projectName}"`));
+  }
 
   const pm = 'npm';
   console.log(chalk.cyan(`\nInstalling dependencies...\n`));

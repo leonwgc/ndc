@@ -89,8 +89,23 @@ async function init(dir) {
         fs.rmSync(gitDir, { recursive: true, force: true });
     }
     await run('git init', targetDir);
+    // Remove docs directory if present
+    const docsDir = path.join(targetDir, 'docs');
+    if (fs.existsSync(docsDir)) {
+        fs.rmSync(docsDir, { recursive: true, force: true });
+        console.log(chalk_1.default.gray('Removed docs directory.'));
+    }
+    // Update package.json name and description
+    const pkgPath = path.join(targetDir, 'package.json');
+    if (fs.existsSync(pkgPath)) {
+        const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'));
+        pkg.name = projectName;
+        pkg.description = projectName;
+        fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
+        console.log(chalk_1.default.gray(`Updated package.json: name="${projectName}", description="${projectName}"`));
+    }
     const pm = 'npm';
-    console.log(chalk_1.default.cyan(`\nInstalling dependencies with ${chalk_1.default.bold(pm)} ...\n`));
+    console.log(chalk_1.default.cyan(`\nInstalling dependencies...\n`));
     try {
         await run(`${pm} install`, targetDir);
     }
