@@ -4,6 +4,7 @@ import { Command } from 'commander';
 import { spawn } from 'child_process';
 import * as path from 'path';
 import * as fs from 'fs';
+import chalk from 'chalk';
 
 const TEMPLATE_URL = 'https://github.com/leonwgc/ant-admin-template.git';
 
@@ -20,12 +21,12 @@ function run(command: string, cwd: string): Promise<void> {
       if (code === 0) {
         resolve();
       } else {
-        reject(new Error(`命令执行失败: ${command} (退出码: ${code})`));
+        reject(new Error(chalk.red(`Command failed: ${command} (exit code: ${code})`)));
       }
     });
 
     child.on('error', (err) => {
-      reject(new Error(`命令启动失败: ${command}\n${err.message}`));
+      reject(new Error(chalk.red(`Failed to start command: ${command}\n${err.message}`)));
     });
   });
 }
@@ -34,7 +35,7 @@ async function init(dir: string): Promise<void> {
   const targetDir = path.resolve(process.cwd(), dir);
 
   if (fs.existsSync(targetDir)) {
-    console.error(`错误: 目录已存在: ${targetDir}`);
+    console.error(chalk.red(`Error: Directory already exists: ${targetDir}`));
     process.exit(1);
   }
 
@@ -45,18 +46,18 @@ async function init(dir: string): Promise<void> {
     fs.mkdirSync(parentDir, { recursive: true });
   }
 
-  console.log(`\n正在克隆模板到 ${targetDir} ...\n`);
+  console.log(chalk.cyan(`\nCloning template into ${chalk.bold(targetDir)} ...\n`));
   try {
     await run(
       `git clone --depth 1 ${TEMPLATE_URL} ${projectName}`,
       parentDir
     );
   } catch (err) {
-    console.error('克隆失败:', (err as Error).message);
+    console.error(chalk.red('Clone failed:'), (err as Error).message);
     process.exit(1);
   }
 
-  // 删除 .git 目录，重新初始化
+  // Remove .git and re-initialize
   const gitDir = path.join(targetDir, '.git');
   if (fs.existsSync(gitDir)) {
     fs.rmSync(gitDir, { recursive: true, force: true });
@@ -64,30 +65,31 @@ async function init(dir: string): Promise<void> {
   await run('git init', targetDir);
 
   const pm = 'npm';
-  console.log(`\n正在使用 ${pm} 安装依赖...\n`);
+  console.log(chalk.cyan(`\nInstalling dependencies with ${chalk.bold(pm)} ...\n`));
   try {
     await run(`${pm} install`, targetDir);
   } catch (err) {
-    console.error('依赖安装失败:', (err as Error).message);
+    console.error(chalk.red('Install failed:'), (err as Error).message);
     process.exit(1);
   }
 
-  console.log(`\n✅ 项目初始化成功！\n`);
-  console.log(`  cd ${dir}`);
-  console.log(`  ${pm} dev\n`);
+  console.log(chalk.green(`\n✅ Project initialized successfully!\n`));
+  console.log(chalk.bold('  Get started:'));
+  console.log(chalk.yellow(`    cd ${dir}`));
+  console.log(chalk.yellow(`    ${pm} run dev`) + '\n');
 }
 
 const program = new Command();
 
 program
   .name('ndc')
-  .description('从 ant-admin-template 初始化一个后台管理项目')
+  .description('Scaffold an ant-admin project from template')
   .version('1.0.0');
 
 program
   .command('init')
-  .description('初始化新项目')
-  .requiredOption('--dir <directory>', '目标项目目录名称或路径')
+  .description('Initialize a new project')
+  .requiredOption('--dir <directory>', 'Target directory name or path for the new project')
   .action((options) => {
     init(options.dir).catch((err) => {
       console.error(err.message);
