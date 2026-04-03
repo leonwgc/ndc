@@ -1,10 +1,10 @@
 {
-  "name": "ndc",
+  "name": "ndx",
   "version": "1.0.0",
   "description": "CLI tool to initialize ant-admin project from template",
   "main": "dist/index.js",
   "bin": {
-    "ndc": "./dist/index.js"
+    "ndx": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
