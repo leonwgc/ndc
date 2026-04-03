@@ -122,9 +122,14 @@ async function init(dir) {
         process.exit(1);
     }
     console.log(chalk_1.default.green(`\n✅ Project initialized successfully!\n`));
-    console.log(chalk_1.default.bold('  Get started:'));
-    console.log(chalk_1.default.yellow(`    cd ${dir}`));
-    console.log(chalk_1.default.yellow(`    ${pm} start`) + '\n');
+    console.log(chalk_1.default.cyan(`\nStarting development server...\n`));
+    try {
+        await run(`${pm} start`, targetDir);
+    }
+    catch (err) {
+        console.error(chalk_1.default.red('Start failed:'), err.message);
+        process.exit(1);
+    }
 }
 const program = new commander_1.Command();
 program

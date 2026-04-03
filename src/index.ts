@@ -100,9 +100,13 @@ async function init(dir: string): Promise<void> {
   }
 
   console.log(chalk.green(`\n✅ Project initialized successfully!\n`));
-  console.log(chalk.bold('  Get started:'));
-  console.log(chalk.yellow(`    cd ${dir}`));
-  console.log(chalk.yellow(`    ${pm} start`) + '\n');
+  console.log(chalk.cyan(`\nStarting development server...\n`));
+  try {
+    await run(`${pm} start`, targetDir);
+  } catch (err) {
+    console.error(chalk.red('Start failed:'), (err as Error).message);
+    process.exit(1);
+  }
 }
 
 const program = new Command();
