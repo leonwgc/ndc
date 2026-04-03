@@ -78,7 +78,16 @@ async function init(dir: string): Promise<void> {
     pkg.name = projectName;
     pkg.description = projectName;
     fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf-8');
-    console.log(chalk.gray(`Updated package.json: name="${projectName}", description="${projectName}"`));
+  }
+
+  // Replace HashRouter with BrowserRouter in index.tsx
+  const indexTsxPath = path.join(targetDir, 'src', 'index.tsx');
+  if (fs.existsSync(indexTsxPath)) {
+    let content = fs.readFileSync(indexTsxPath, 'utf-8');
+    if (content.includes('HashRouter')) {
+      content = content.replace(/HashRouter/g, 'BrowserRouter');
+      fs.writeFileSync(indexTsxPath, content, 'utf-8');
+    }
   }
 
   const pm = 'npm';
