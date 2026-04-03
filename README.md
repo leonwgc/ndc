@@ -1,4 +1,4 @@
-# ndc
+# neat-admin-cli
 
 A CLI tool to scaffold an Ant Design admin project from the [ant-admin-template](https://github.com/leonwgc/ant-admin-template) GitHub template.
 
@@ -7,19 +7,19 @@ A CLI tool to scaffold an Ant Design admin project from the [ant-admin-template]
 ## Installation
 
 ```bash
-npm install -g ndc
+npm install -g neat-admin-cli
 ```
 
 Or use it directly via `npx`:
 
 ```bash
-npx ndc init --dir my-admin-project
+npx neat-admin-cli init --dir my-admin-project
 ```
 
 ## Usage
 
 ```bash
-ndc init --dir <directory>
+neat-admin-cli init --dir <directory>
 ```
 
 ### Options
@@ -34,10 +34,10 @@ ndc init --dir <directory>
 
 ```bash
 # Create a project in the current directory
-ndc init --dir my-admin-project
+neat-admin-cli init --dir my-admin-project
 
 # Create a project at an absolute path
-ndc init --dir /path/to/my-admin-project
+neat-admin-cli init --dir /path/to/my-admin-project
 ```
 
 After initialization, the tool will:

@@ -1,4 +1,4 @@
-# ndc
+# neat-admin-cli
 
 一个基于 Node.js 的 CLI 工具，用于从 [ant-admin-template](https://github.com/leonwgc/ant-admin-template) 模板快速初始化 Ant Design 后台管理项目。
 
@@ -7,19 +7,19 @@
 ## 安装
 
 ```bash
-npm install -g ndc
+npm install -g neat-admin-cli
 ```
 
 或通过 `npx` 直接使用（无需全局安装）：
 
 ```bash
-npx ndc init --dir my-admin-project
+npx neat-admin-cli init --dir my-admin-project
 ```
 
 ## 使用方法
 
 ```bash
-ndc init --dir <目录>
+neat-admin-cli init --dir <目录>
 ```
 
 ### 参数说明
@@ -34,10 +34,10 @@ ndc init --dir <目录>
 
 ```bash
 # 在当前目录下创建项目
-ndc init --dir my-admin-project
+neat-admin-cli init --dir my-admin-project
 
 # 指定绝对路径创建项目
-ndc init --dir /path/to/my-admin-project
+neat-admin-cli init --dir /path/to/my-admin-project
 ```
 
 初始化完成后，工具会依次执行：
