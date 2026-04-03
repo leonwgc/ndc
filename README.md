@@ -1,8 +1,6 @@
 # neat-admin-cli
 
-A CLI tool to scaffold an Ant Design admin project from the [ant-admin-template](https://github.com/leonwgc/ant-admin-template) GitHub template.
-
-[中文文档](./README.zh-CN.md)
+A CLI tool to scaffold a Neat Design admin project
 
 ## Installation
 
@@ -50,17 +48,8 @@ Then start the development server:
 
 ```bash
 cd my-admin-project
-npm run dev
+npm start
 ```
-
-## Template
-
-The project template is based on [ant-admin-template](https://github.com/leonwgc/ant-admin-template), which includes:
-
-- React + TypeScript
-- Ant Design component library
-- gdn-pack build tool
-- Routing & layout setup
 
 ## License
 
