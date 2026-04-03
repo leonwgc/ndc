@@ -1,10 +1,10 @@
 {
-  "name": "ndx",
+  "name": "neat-admin-cli",
   "version": "1.0.0",
   "description": "CLI tool to initialize ant-admin project from template",
   "main": "dist/index.js",
   "bin": {
-    "ndx": "./dist/index.js"
+    "neat-admin-cli": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
